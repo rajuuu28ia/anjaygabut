@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+    }
+    #splash {
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #000000;
+      width: 100vw;
+      height: 100vh;
+    }
+    .splash-content {
+      text-align: center;
+      animation: fadeInUp 0.5s ease-out;
+    }
+    .splash-content h2 {
+      color: #ffffff;
+      font-size: 2rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+    .splash-content p {
+      color: #9ca3af;
+      font-size: 1rem;
+    }
+    .loading-bar {
+      width: 12rem;
+      height: 0.25rem;
+      background: linear-gradient(to right, #4b5563, #9ca3af, #4b5563);
+      border-radius: 9999px;
+      margin: 1.5rem auto 0;
+      animation: loadingBar 2s ease-in-out infinite;
+    }
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    @keyframes loadingBar {
+      0%, 100% {
+        opacity: 0.5;
+        transform: scaleX(0.8);
+      }
+      50% {
+        opacity: 1;
+        transform: scaleX(1);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="splash">
+    <div class="splash-content">
+      <h2>Welcome</h2>
+      <p>Loading your experience...</p>
+      <div class="loading-bar"></div>
+    </div>
+  </div>
+</body>
+</html>
