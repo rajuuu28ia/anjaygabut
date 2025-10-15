@@ -31,14 +31,13 @@ export default function Lanyard({
   gravity = [0, -25, 0],
   transparent = true
 }: LanyardProps) {
-  const [isSmall, setIsSmall] = useState<boolean>(() => {
-    if (typeof window !== 'undefined') {
-      return window.innerWidth < 1024;
-    }
-    return false;
-  });
+  const [isSmall, setIsSmall] = useState<boolean>(false);
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
+    setIsMounted(true);
+    setIsSmall(window.innerWidth < 1024);
+    
     const handleResize = (): void => {
       setIsSmall(window.innerWidth < 1024);
     };
@@ -341,7 +340,7 @@ function Band({ maxSpeed = 50, minSpeed = 10, isSmall }: BandProps) {
           color="white"
           depthTest={false}
           resolution={isSmall ? [2048, 2048] : [2560, 1440]}
-          useMap
+          useMap={1}
           map={texture}
           repeat={isSmall ? [-2.5, 1] : [-3, 1]}
           lineWidth={isSmall ? 1 : 1.2}
