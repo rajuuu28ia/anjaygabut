@@ -9,12 +9,17 @@ import animationData from '@/app/animasi/2fd11cea-7c85-4e0c-98fa-499492d4d882.js
 export default function WelcomeScreen() {
   const [isVisible, setIsVisible] = useState(true);
   const [isReady, setIsReady] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
+    setIsMounted(true);
+    
     // Hide initial splash screen
-    const splashElement = document.getElementById('initial-splash');
-    if (splashElement) {
-      splashElement.style.display = 'none';
+    if (typeof window !== 'undefined') {
+      const splashElement = document.getElementById('initial-splash');
+      if (splashElement) {
+        splashElement.style.display = 'none';
+      }
     }
     
     setIsReady(true);
@@ -27,6 +32,8 @@ export default function WelcomeScreen() {
 
   // Disable scrolling when welcome screen is visible
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+    
     if (isVisible) {
       document.documentElement.style.overflow = 'hidden';
       document.body.style.overflow = 'hidden';
